@@ -1,6 +1,6 @@
 spring:
   application:
-    name: EM CCD Orchestrator
+    name: DG TEMPLATE MANAGEMENT API
   batch:
     job:
       enabled: false
@@ -12,7 +12,7 @@ base-urls:
   idam-user: ${IDAM_API_USER:test@test.com}
   idam-user-role: ${IDAM_API_USER_ROLE:caseworker}
   idam-s2s: ${S2S_URL:http://localhost:4502}
-  s2s-name: ${S2S_SERVICE_NAME:em_ccd_orchestrator}
+  s2s-name: ${S2S_SERVICE_NAME:dg_template_management_api}
   s2s-token: ${S2S_TOKEN:AAAAAAAAAAAAAAAA}
   test-url: ${TEST_URL:http://localhost:8080}
 
@@ -43,7 +43,7 @@ management:
 info:
   app:
     environment: ${PACKAGES_ENVIRONMENT:local}
-    project: ${PACKAGES_PROJECT:em-ccd-orchestrator}
+    project: ${PACKAGES_PROJECT:dg-template-management-api}
     name: ${PACKAGES_NAME:cor}
 #    version: ${PACKAGES_VERSION:unknown}
 
@@ -70,18 +70,11 @@ app-insights:
   request-component: on
   telemetry-component: on
 
-em-rpa-ccd-orchestrator:
-  base-url: ${EM_CCD_ORCHESTRATOR_URL:http://localhost:4623}
-
-dm-store-app:
-  base-url: ${DM_STORE_APP_URL:http://localhost:4603}
-
-em-rpa-stitching-api:
-  base-url: ${EM_STITCHING_API_URL:http://localhost:4630}
-  resource: '/api/document-tasks/'
+rpa-dg-template-management-api:
+  base-url: ${DG_TEMPLATE_MANAGEMENT_API_URL:http://localhost:4623}
 
 idam:
   s2s-auth:
     url: ${S2S_BASE_URI:http://localhost:4502}
     totp_secret: ${S2S_KEY:AAAAAAAAAAAAAAAA}
-    microservice: em_ccd_orchestrator
+    microservice: dg_template_management_api

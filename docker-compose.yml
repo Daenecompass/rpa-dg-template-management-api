@@ -1,10 +1,10 @@
 version: '2.1'
 
 services:
-  rpa-em-ccd-orchestrator:
+  rpa-dg-template-management-api:
     build:
       context: .
-#    image: hmcts/rpa-em-ccd-orchestrator:latest
+#    image: hmcts/rpa-dg-template-management-api:latest
     environment:
       - SERVER_PORT=8080
       - IDAM_USER_BASE_URI=http://idam-api:8080
@@ -15,8 +15,8 @@ services:
       - JSON_CONSOLE_PRETTY_PRINT=false
       - ROOT_LOGGING_LEVEL
       - REFORM_SERVICE_TYPE=java
-      - REFORM_SERVICE_NAME=rpa-em-ccd-orchestrator
-      - REFORM_TEAM=em-ccd-orchestrator
+      - REFORM_SERVICE_NAME=rpa-dg-template-management-api
+      - REFORM_TEAM=dg-template-management-api
       - REFORM_ENVIRONMENT=docker
     ports:
     - $SERVER_PORT:8080

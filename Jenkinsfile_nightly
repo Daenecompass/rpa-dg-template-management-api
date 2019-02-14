@@ -3,8 +3,8 @@
 properties([
     [
         $class: 'GithubProjectProperty',
-        displayName: 'Evidence Management CCD Orchestrator',
-        projectUrlStr: 'https://github.com/hmcts/rpa-em-ccd-orchestrator'
+        displayName: 'Document Generation Template Management API',
+        projectUrlStr: 'https://github.com/hmcts/rpa-dg-template-management-api'
     ],
     pipelineTriggers([
         cron('H 05 * * *')
@@ -14,8 +14,8 @@ properties([
 @Library("Infrastructure")
 
 def type = "java"
-def product = "em"
-def component = "ccd-orchestrator"
+def product = "dg"
+def component = "template-management-api"
 
 def channel = '#rpa-pipeline'
 

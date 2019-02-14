@@ -1,16 +1,16 @@
-# Evidence Management CCD Orchestrator
+# Document Generation Template Management API
 
-[![Build Status](https://travis-ci.org/hmcts/rpa-em-ccd-orchestrator.svg?branch=master)](https://travis-ci.org/hmcts/rpa-em-ccd-orchestrator)
-[![codecov](https://codecov.io/gh/hmcts/rpa-em-ccd-orchestrator/branch/master/graph/badge.svg)](https://codecov.io/gh/hmcts/rpa-em-ccd-orchestrator)
+[![Build Status](https://travis-ci.org/hmcts/rpa-dg-template-management-api.svg?branch=master)](https://travis-ci.org/hmcts/rpa-dg-template-management-api)
+[![codecov](https://codecov.io/gh/hmcts/rpa-dg-template-management-api/branch/master/graph/badge.svg)](https://codecov.io/gh/hmcts/rpa-dg-template-management-api)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-CCD Orchestrator is a backend service that facilitates interactions between CCD, the EM Stitching service, and a calling service.
+Template Management API is a backend service that assists the Document Assembly API in managing templates used by Docmosis to populate and generate documents.
 
 # Setup
 
 ```
 az login
-az acr login --name hmcts --subscription 1c4f0704-a29e-403d-b719-b90c34ef14c9
+az acr login --name hmcts --subscription 1c4f0704-a29e-403d-b719-b90c34ef14c9 // TODO Linus, do we still need this?
 docker-compose -f docker-compose-dependencies.yml pull
 docker-compose -f docker-compose-dependencies.yml up
 ```
@@ -31,8 +31,8 @@ It uses:
 ## Quickstart
 ```bash
 #Cloning repo and running though docker
-git clone https://github.com/hmcts/rpa-em-ccd-orchestrator.git
-cd rpa-em-ccd-orchestrator/
+git clone https://github.com/hmcts/rpa-dg-template-management-api.git
+cd rpa-dg-template-management-api/
 ./buildrundm-docker.sh
 ```
 
@@ -51,7 +51,7 @@ To view our REST API go to {HOST}:{PORT}/swagger-ui.html
 
 ### API Endpoints
 A list of our endpoints can be found here
-> https://hmcts.github.io/reform-api-docs/swagger.html?url=https://hmcts.github.io/reform-api-docs/specs/rpa-em-ccd-orchestrator.json
+> https://hmcts.github.io/reform-api-docs/swagger.html?url=https://hmcts.github.io/reform-api-docs/specs/rpa-dg-template-management-api.json
 
 
 

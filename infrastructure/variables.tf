@@ -1,6 +1,6 @@
 variable "product" {
   type = "string"
-  default = "em"
+  default = "dg"
 }
 
 variable "shared_product_name" {
@@ -67,14 +67,6 @@ variable "s2s_url" {
 
 variable "dm_store_app_url" {
   default = "dm-store"
-}
-
-variable "em_stitching_api_url" {
-  default = "em-stitching"
-}
-
-variable "em_ccd_orchestrator_url" {
-  default = "em-ccd-orchestrator"
 }
 
 ////////////////////////////////////////////////
