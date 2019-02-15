@@ -15,6 +15,8 @@ plugins {
     id "net.ltgt.apt-idea" version "0.18"
     id "net.ltgt.apt" version "0.18"
     id 'jacoco'
+    id 'checkstyle'
+    id 'pmd'
    // id "com.github.spacialcircumstances.gradle-cucumber-reporting" version "0.0.11"
     id "com.github.lkishalmi.gatling" version "3.0.1"
 }
@@ -42,6 +44,21 @@ group 'uk.gov.hmcts.reform.dg.template_management'
 version '0.0.1'
 sourceCompatibility = 1.8
 mainClassName = 'uk.gov.hmcts.reform.dg.template_management.Application'
+
+checkstyle {
+    maxWarnings = 0
+    toolVersion = '8.8'
+    // need to set configDir to rootDir otherwise submodule will use submodule/config/checkstyle
+    configDir = new File(rootDir, 'config/checkstyle')
+}
+
+pmd {
+    toolVersion = "5.8.1"
+    ignoreFailures = true
+    sourceSets = [sourceSets.main, sourceSets.test]
+    reportsDir = file("$project.buildDir/reports/pmd")
+    ruleSetFiles = files("config/pmd/ruleset.xml")
+}
 
 configurations {
     aatCompile.extendsFrom(testCompile)
@@ -129,14 +146,14 @@ bootJar {
 }
 
 def coverageExclusionList = [
-    '**uk/gov/hmcts/reform/dg/template_management/Application*',
-    '**uk/gov/hmcts/reform/dg/template_management/appinsights/*',
-    '**uk/gov/hmcts/reform/dg/template_management/config/*',
-    '**uk/gov/hmcts/reform/dg/template_management/config/logging/*',
-    '**uk/gov/hmcts/reform/dg/template_management/domain/*',
+    '**uk/gov/hmcts/reform/dg/template/management/Application*',
+    '**uk/gov/hmcts/reform/dg/template/management/appinsights/*',
+    '**uk/gov/hmcts/reform/dg/template/management/config/*',
+    '**uk/gov/hmcts/reform/dg/template/management/config/logging/*',
+    '**uk/gov/hmcts/reform/dg/template/management/info/*',
+    '**uk/gov/hmcts/reform/dg/template/management/domain/*',
 ]
 
-//(jacocoTestReport | jacocoTestCoverageVerification)
 jacoco {
     toolVersion = '0.7.9' // jacocoMavenPluginVersion
     reportsDir = file("$buildDir/reports/jacoco")
@@ -148,6 +165,8 @@ jacocoTestReport {
     reports {
         xml.enabled = true
         csv.enabled = true
+
+        xml.destination file("${project.buildDir}/reports/jacoco/test/jacocoTestReport.xml")
     }
 
     afterEvaluate {
@@ -161,6 +180,7 @@ sonarqube {
     properties {
         property "sonar.projectName", "${rootProject.name}"
         property "sonar.jacoco.reportPath", "${project.buildDir}/jacoco/test.exec"
+        property "sonar.dependencyCheck.reportPath", "${project.buildDir}/reports/dependency-check-report.xml"
         property "sonar.exclusions", coverageExclusionList.join(", ")
     }
 }
