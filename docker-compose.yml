@@ -4,7 +4,7 @@ services:
   rpa-dg-template-management-api:
     build:
       context: .
-#    image: hmcts/rpa-dg-template-management-api:latest
+    image: hmcts/rpa-dg-template-management-api:latest
     environment:
       - SERVER_PORT=8080
       - IDAM_USER_BASE_URI=http://idam-api:8080
