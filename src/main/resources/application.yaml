@@ -72,4 +72,4 @@ idam:
   s2s-auth:
     url: ${S2S_BASE_URI:http://localhost:4502}
     totp_secret: ${S2S_KEY:AAAAAAAAAAAAAAAA}
-    microservice: dg_template_management_api
+    microservice: dg_template_management
