@@ -1,11 +1,6 @@
 spring:
   application:
     name: DG TEMPLATE MANAGEMENT API
-  batch:
-    job:
-      enabled: false
-      jobCronExpression: ${JOB_CRON_EXPRESSION:"* * * * * *"}
-    initialize-schema: never
 
 base-urls:
   idam-url: ${IDAM_API_URL:http://localhost:4501}
