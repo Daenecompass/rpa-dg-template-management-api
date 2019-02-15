@@ -4,7 +4,7 @@ import com.google.common.collect.Lists;
 
 import java.util.List;
 
-public class MockTemplateRepository implements TemplateRepository {
+public class MockTemplateListRepository implements TemplateListRepository {
 
     @Override
     public List<Template> getTemplates() {
@@ -15,4 +15,5 @@ public class MockTemplateRepository implements TemplateRepository {
             new Template("template4.docx")
         );
     }
+
 }
