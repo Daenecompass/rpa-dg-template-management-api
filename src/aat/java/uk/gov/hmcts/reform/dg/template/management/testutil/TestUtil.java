@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.dg.template.management.testutil;
 import com.warrenstrange.googleauth.GoogleAuthenticator;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
 import org.json.JSONObject;
 import org.springframework.http.MediaType;
 
@@ -78,5 +79,16 @@ public class TestUtil {
 
         return s2sToken;
     }
-}
 
+    public RequestSpecification authRequest() {
+        return s2sAuthRequest()
+            .header("Authorization", "Bearer " + getIdamToken("test@test.com"));
+    }
+
+    private RequestSpecification s2sAuthRequest() {
+        RestAssured.useRelaxedHTTPSValidation();
+        return RestAssured
+            .given()
+            .header("ServiceAuthorization", "Bearer " + getS2sToken());
+    }
+}

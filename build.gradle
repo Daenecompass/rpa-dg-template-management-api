@@ -40,10 +40,10 @@ if (!project.hasProperty('runList')) {
     project.ext.runList = 'main'
 }
 
-group 'uk.gov.hmcts.reform.dg.template_management'
+group 'uk.gov.hmcts.reform.dg.template.management'
 version '0.0.1'
 sourceCompatibility = 1.8
-mainClassName = 'uk.gov.hmcts.reform.dg.template_management.Application'
+mainClassName = 'uk.gov.hmcts.reform.dg.template.management.Application'
 
 checkstyle {
     maxWarnings = 0
@@ -216,7 +216,7 @@ task gatlingRunAAT(type: JavaExec) {
     new File("${buildDir}/reports/tests/performance").mkdirs()
     classpath = sourceSets.aat.runtimeClasspath + configurations.gatling
     main = "io.gatling.app.Gatling"
-    args = ['-s', 'uk.gov.hmcts.reform.dg.template_management.performance.NpaLoad',
+    args = ['-s', 'uk.gov.hmcts.reform.dg.template.management.performance.NpaLoad',
             '-rf', "${buildDir}/reports/tests/performance"
     ]
 }
@@ -227,7 +227,7 @@ task gatlingRunSmoke(type: JavaExec) {
     new File("${buildDir}/reports/tests/performance").mkdirs()
     classpath = sourceSets.aat.runtimeClasspath + configurations.gatling
     main = "io.gatling.app.Gatling"
-    args = ['-s', 'uk.gov.hmcts.reform.dg.template_management.performance.NpaSmoke',
+    args = ['-s', 'uk.gov.hmcts.reform.dg.template.management.performance.NpaSmoke',
             '-rf', "${buildDir}/reports/tests/performance"
     ]
 }
@@ -237,7 +237,7 @@ task functional(type: Test) {
     description = 'Executes functional tests'
     setTestClassesDirs(sourceSets.aat.output.classesDirs)
     setClasspath(sourceSets.aat.runtimeClasspath)
-    include "uk/gov/hmcts/reform/dg/template_management/functional/**"
+    include "uk/gov/hmcts/reform/dg/template/management/functional/**"
 
     environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
 }
@@ -247,7 +247,7 @@ task smoke(type: Test) {
     description = 'Executes non-destructive smoke tests'
     setTestClassesDirs(sourceSets.aat.output.classesDirs)
     setClasspath(sourceSets.aat.runtimeClasspath)
-    include "uk/gov/hmcts/reform/dg/template_management/smoke/**"
+    include "uk/gov/hmcts/reform/dg/template/management/smoke/**"
 
     environment("APPINSIGHTS_INSTRUMENTATIONKEY", "test-key")
 }
