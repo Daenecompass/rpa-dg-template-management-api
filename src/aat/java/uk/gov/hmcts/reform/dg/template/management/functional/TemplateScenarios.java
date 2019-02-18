@@ -27,15 +27,4 @@ public class TemplateScenarios {
         Assert.assertEquals("template4.docx", body.getString("[3].name"));
     }
 
-    @Test
-    public void testGetTemplate() {
-        Response response = util.authRequest()
-            .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-            .request("GET", Env.getTestUrl() + "/api/templates/anything");
-
-        String body = response.getBody().asString();
-
-        Assert.assertEquals(200, response.getStatusCode());
-        Assert.assertTrue(body.contains("appender"));
-    }
 }
