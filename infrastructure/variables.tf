@@ -65,10 +65,6 @@ variable "s2s_url" {
   default = "rpe-service-auth-provider"
 }
 
-variable "dm_store_app_url" {
-  default = "dm-store"
-}
-
 ////////////////////////////////////////////////
 // Logging
 ////////////////////////////////////////////////

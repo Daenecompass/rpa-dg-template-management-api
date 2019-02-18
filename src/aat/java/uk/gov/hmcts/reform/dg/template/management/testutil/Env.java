@@ -17,11 +17,6 @@ public class Env {
         defaults.setProperty("IDAM_API_USER_ROLE", "caseworker");
         defaults.setProperty("IDAM_API_USER", "test@test.com");
         defaults.setProperty("IDAM_API_URL", "http://localhost:4501");
-        defaults.setProperty("DM_STORE_APP_URL", "http://localhost:4603");
-    }
-
-    public static String getUseProxy() {
-        return require("PROXY");
     }
 
     public static String getTestUrl() {
@@ -37,7 +32,6 @@ public class Env {
     }
 
     public static String getS2SToken() {
-        System.out.println(require("FUNCTIONAL_TEST_CLIENT_S2S_TOKEN"));
         return require("FUNCTIONAL_TEST_CLIENT_S2S_TOKEN");
     }
 
