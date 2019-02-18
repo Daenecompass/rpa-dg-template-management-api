@@ -10,7 +10,6 @@ Template Management API is a backend service that assists the Document Assembly 
 
 ```
 az login
-az acr login --name hmcts --subscription 1c4f0704-a29e-403d-b719-b90c34ef14c9 // TODO Linus, do we still need this?
 docker-compose -f docker-compose-dependencies.yml pull
 docker-compose -f docker-compose-dependencies.yml up
 ```
