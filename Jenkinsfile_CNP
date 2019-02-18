@@ -15,7 +15,7 @@ properties([
 
 def type = "java"
 def product = "dg"
-def component = "template-management"
+def component = "tmpl-mgmt"
 
 def channel = '#rpa-pipeline'
 
@@ -35,6 +35,7 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
 withPipeline(type , product, component) {
     enableSlackNotifications(channel)
     loadVaultSecrets(secrets)
+    docker
 
     after('checkout') {
         echo '${product}-${component} out'

@@ -82,6 +82,7 @@ data "azurerm_key_vault" "shared_key_vault" {
 module "local_key_vault" {
   source = "git@github.com:hmcts/moj-module-key-vault?ref=master"
   product = "${local.app_full_name}"
+  name = "dg-tmpl-mgmt-${var.env}"
   env = "${var.env}"
   tenant_id = "${var.tenant_id}"
   object_id = "${var.jenkins_AAD_objectId}"
