@@ -19,6 +19,10 @@ public class Env {
         defaults.setProperty("IDAM_API_URL", "http://localhost:4501");
     }
 
+    public static String getUseProxy() {
+        return require("PROXY");
+    }
+
     public static String getTestUrl() {
         return require("TEST_URL");
     }
