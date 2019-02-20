@@ -69,6 +69,6 @@ public class TemplateResourceTest {
             .andReturn();
 
         String content = result.getResponse().getContentAsString();
-        Assert.assertTrue(content.contains("appender"));
+        Assert.assertTrue(content.contains("customXml/itemProps1"));
     }
 }

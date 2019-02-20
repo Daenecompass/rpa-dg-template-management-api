@@ -36,6 +36,6 @@ public class TemplateScenarios {
         String body = response.getBody().asString();
 
         Assert.assertEquals(200, response.getStatusCode());
-        Assert.assertTrue(body.contains("appender"));
+        Assert.assertTrue(body.contains("customXml/itemProps1"));
     }
 }

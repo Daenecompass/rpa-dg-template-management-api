@@ -6,7 +6,7 @@ public class MockTemplateBinaryRepository implements TemplateBinaryRepository {
 
     @Override
     public InputStream getTemplateById(String id) {
-        return Thread.currentThread().getContextClassLoader().getResourceAsStream("logback-spring.xml");
+        return Thread.currentThread().getContextClassLoader().getResourceAsStream("example-template.docx");
     }
 
 }
