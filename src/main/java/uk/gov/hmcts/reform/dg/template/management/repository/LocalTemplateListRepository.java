@@ -15,8 +15,8 @@ public class LocalTemplateListRepository implements TemplateListRepository {
 
     @Override
     public List<Template> getTemplates() throws IOException {
-        try (Stream<Path> derp = Files.walk(getPath())) {
-            return derp.filter(Files::isRegularFile)
+        try (Stream<Path> files = Files.walk(getPath())) {
+            return files.filter(Files::isRegularFile)
                 .sorted()
                 .map(f -> new Template(f.getFileName().toString()))
                 .collect(Collectors.toList());

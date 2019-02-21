@@ -323,4 +323,9 @@
         <gav regex="true">.*</gav>
         <cve>CVE-2011-2732</cve>
     </suppress>
+    <suppress>
+        <notes>See https://github.com/FasterXML/jackson-modules-java8/issues/90#issuecomment-450544881</notes>
+        <gav regex="true">.*</gav>
+        <cve>CVE-2019-7722</cve>
+    </suppress>
 </suppressions>
