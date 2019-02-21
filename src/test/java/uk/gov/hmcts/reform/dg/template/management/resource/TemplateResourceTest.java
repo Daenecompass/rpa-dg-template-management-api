@@ -17,8 +17,10 @@ import uk.gov.hmcts.reform.auth.checker.core.SubjectResolver;
 import uk.gov.hmcts.reform.auth.checker.core.user.User;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.dg.template.management.Application;
-import uk.gov.hmcts.reform.dg.template.management.repository.MockTemplateBinaryRepository;
-import uk.gov.hmcts.reform.dg.template.management.repository.MockTemplateListRepository;
+import uk.gov.hmcts.reform.dg.template.management.repository.LocalTemplateBinaryRepository;
+import uk.gov.hmcts.reform.dg.template.management.repository.LocalTemplateListRepository;
+
+import java.util.Base64;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -40,8 +42,8 @@ public class TemplateResourceTest {
         MockitoAnnotations.initMocks(this);
         mvc = MockMvcBuilders.standaloneSetup(
             new TemplateResource(
-                new MockTemplateListRepository(),
-                new MockTemplateBinaryRepository()
+                new LocalTemplateListRepository(),
+                new LocalTemplateBinaryRepository()
             )
         ).build();
     }
@@ -54,17 +56,18 @@ public class TemplateResourceTest {
         mvc.perform(get("/api/templates"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$[0].name").value("template1.docx"))
-            .andExpect(jsonPath("$[1].name").value("template2.docx"))
-            .andExpect(jsonPath("$[2].name").value("template3.docx"));
+            .andExpect(jsonPath("$[0].name").value("FL-FRM-APP-ENG-00002.docx"))
+            .andExpect(jsonPath("$[1].name").value("FL-FRM-GOR-ENG-00007.docx"))
+            .andExpect(jsonPath("$[2].name").value("PostponementRequestGenericTest.docx"));
     }
 
     @Test
     public void template() throws Exception {
         BDDMockito.given(authTokenGenerator.generate()).willReturn("s2s");
         BDDMockito.given(userResolver.getTokenDetails("jwt")).willReturn(new User("id", null));
+        String id = Base64.getEncoder().encodeToString("TB-IAC-APP-ENG-00003 Template Tornado.docx".getBytes());
 
-        MvcResult result = mvc.perform(get("/api/templates/templateName"))
+        MvcResult result = mvc.perform(get("/api/templates/" + id))
             .andExpect(status().isOk())
             .andReturn();
 

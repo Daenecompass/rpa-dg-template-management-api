@@ -40,7 +40,7 @@ public class TemplateResource {
         @ApiResponse(code = 404, message = "Not Found"),
     })
     @GetMapping("/templates")
-    public ResponseEntity<List<Template>> templates() {
+    public ResponseEntity<List<Template>> templates() throws IOException {
         log.debug("GET /templates");
 
         final List<Template> results = listRepository.getTemplates();
