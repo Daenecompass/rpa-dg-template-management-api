@@ -9,22 +9,26 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class LocalTemplateListRepository implements TemplateListRepository {
 
     @Override
     public List<Template> getTemplates() throws IOException {
-        try {
-            URL templateDirectory = Thread.currentThread().getContextClassLoader().getResource("templates/");
-            File templateFile = new File(templateDirectory.toURI());
-            Path templateDirectoryPath = Paths.get(templateFile.getAbsolutePath());
-
-            return Files
-                .walk(templateDirectoryPath)
-                .filter(Files::isRegularFile)
+        try (Stream<Path> derp = Files.walk(getPath())) {
+            return derp.filter(Files::isRegularFile)
                 .sorted()
                 .map(f -> new Template(f.getFileName().toString()))
                 .collect(Collectors.toList());
+        }
+    }
+
+    private Path getPath() throws IOException {
+        try {
+            URL templateDirectory = Thread.currentThread().getContextClassLoader().getResource("templates/");
+            File templateFile = new File(templateDirectory.toURI());
+
+            return Paths.get(templateFile.getAbsolutePath());
         } catch (URISyntaxException e) {
             throw new IOException(e);
         }
