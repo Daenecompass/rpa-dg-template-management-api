@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.dg.template.management.repository;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
@@ -16,13 +15,12 @@ public class LocalTemplateListRepository implements TemplateListRepository {
     @Override
     public List<Template> getTemplates() throws IOException {
         PathMatchingResourcePatternResolver resolver = new PathMatchingResourcePatternResolver();
-        Resource[] resources = resolver.getResources("classpath:templates/*.*");
+        Resource[] resources = resolver.getResources("classpath*:templates/*.*");
 
         return Arrays.stream(resources)
-            .map(unchecked(Resource::getFile))
-            .filter(File::isFile)
+            .map(unchecked(Resource::getFilename))
             .sorted()
-            .map(f -> new Template(f.getName()))
+            .map(Template::new)
             .collect(Collectors.toList());
     }
 
