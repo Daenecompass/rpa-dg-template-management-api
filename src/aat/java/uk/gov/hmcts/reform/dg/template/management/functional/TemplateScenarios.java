@@ -24,12 +24,12 @@ public class TemplateScenarios {
         Base64.Encoder enc = Base64.getEncoder();
 
         Assert.assertEquals(200, response.getStatusCode());
-        Assert.assertEquals("FL-FRM-APP-ENG-00002.docx", body.getString("[0].name"));
-        Assert.assertEquals(enc.encodeToString("FL-FRM-APP-ENG-00002.docx".getBytes()), body.getString("[0].id"));
-        Assert.assertEquals("FL-FRM-GOR-ENG-00007.docx", body.getString("[1].name"));
-        Assert.assertEquals(enc.encodeToString("FL-FRM-GOR-ENG-00007.docx".getBytes()), body.getString("[1].id"));
-        Assert.assertEquals("PostponementRequestGenericTest.docx", body.getString("[2].name"));
-        Assert.assertEquals(enc.encodeToString("PostponementRequestGenericTest.docx".getBytes()), body.getString("[2].id"));
+        Assert.assertEquals("FL-FRM-APP-ENG-00002.docx", body.getString("[1].name"));
+        Assert.assertEquals(enc.encodeToString("FL-FRM-APP-ENG-00002.docx".getBytes()), body.getString("[1].id"));
+        Assert.assertEquals("FL-FRM-GOR-ENG-00007.docx", body.getString("[2].name"));
+        Assert.assertEquals(enc.encodeToString("FL-FRM-GOR-ENG-00007.docx".getBytes()), body.getString("[2].id"));
+        Assert.assertEquals("PostponementRequestGenericTest.docx", body.getString("[3].name"));
+        Assert.assertEquals(enc.encodeToString("PostponementRequestGenericTest.docx".getBytes()), body.getString("[3].id"));
     }
 
     @Test
