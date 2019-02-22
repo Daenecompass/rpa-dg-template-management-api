@@ -25,7 +25,7 @@ public class LocalTemplateListRepository implements TemplateListRepository {
 
     private Path getPath() throws IOException {
         try {
-            URL templateDirectory = Thread.currentThread().getContextClassLoader().getResource("templates/");
+            URL templateDirectory = Thread.currentThread().getContextClassLoader().getResource("templates" + File.separator);
             File templateFile = new File(templateDirectory.toURI());
 
             return Paths.get(templateFile.getAbsolutePath());
