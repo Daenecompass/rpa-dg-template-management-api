@@ -56,9 +56,9 @@ public class TemplateResourceTest {
         mvc.perform(get("/api/templates"))
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-            .andExpect(jsonPath("$[0].name").value("FL-FRM-APP-ENG-00002.docx"))
-            .andExpect(jsonPath("$[1].name").value("FL-FRM-GOR-ENG-00007.docx"))
-            .andExpect(jsonPath("$[2].name").value("PostponementRequestGenericTest.docx"));
+            .andExpect(jsonPath("$[1].name").value("FL-FRM-APP-ENG-00002.docx"))
+            .andExpect(jsonPath("$[2].name").value("FL-FRM-GOR-ENG-00007.docx"))
+            .andExpect(jsonPath("$[3].name").value("PostponementRequestGenericTest.docx"));
     }
 
     @Test
