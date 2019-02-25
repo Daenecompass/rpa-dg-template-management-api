@@ -115,7 +115,7 @@ variable "enable_s2s_healthcheck" {
 // Whitelists
 ////////////////////////////////////////////////
 variable "s2s_names_whitelist" {
-  default = "em_api,em_gw,jui_webapp,pui_webapp,dg_docassembly"
+  default = "em_api,em_gw,jui_webapp,pui_webapp,dg_docassembly_api"
 }
 
 variable "case_worker_roles" {
