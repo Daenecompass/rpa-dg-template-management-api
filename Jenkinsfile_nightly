@@ -34,8 +34,14 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
     ]
 }
 
+def vaultOverrides = [
+    'preview' : 'aat',
+    'spreview': 'saat'
+]
+
 withNightlyPipeline(type, product, component) {
     enableSlackNotifications(channel)
+    overrideVaultEnvironments(vaultOverrides)
     loadVaultSecrets(secrets)
 
     after('checkout') {

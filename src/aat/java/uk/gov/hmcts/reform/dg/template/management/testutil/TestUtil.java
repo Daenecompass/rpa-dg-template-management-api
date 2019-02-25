@@ -38,6 +38,7 @@ public class TestUtil {
         return RestAssured
             .get(Env.getIdamURL() + "/testing-support/accounts/" + email)
             .getBody()
+            .prettyPeek()
             .jsonPath()
             .get("id");
     }
