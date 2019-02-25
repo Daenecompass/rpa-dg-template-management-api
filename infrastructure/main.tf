@@ -69,7 +69,7 @@ provider "vault" {
 }
 
 data "azurerm_key_vault_secret" "s2s_key" {
-  name      = "microservicekey-dg-template-management"
+  name      = "microservicekey-dg-tmpl-mgmt"
   vault_uri = "https://s2s-${local.local_env}.vault.azure.net/"
 }
 

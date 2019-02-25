@@ -1,7 +1,3 @@
-// used for db migrations
-output "microserviceName" {
-  value = "${local.app_full_name}"
-}
 
 // used for db migrations
 output "vaultName" {
