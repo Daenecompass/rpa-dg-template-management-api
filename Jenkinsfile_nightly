@@ -19,7 +19,7 @@ def component = "template-management-api"
 
 def channel = '#rpa-pipeline'
 
-List<LinkedHashMap<String, Object>> secrets = [
+def secrets = [
     's2s-${env}': [
         secret('microservicekey-em-gw', 'FUNCTIONAL_TEST_CLIENT_S2S_TOKEN')
     ]
