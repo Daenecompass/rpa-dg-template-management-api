@@ -19,7 +19,6 @@ properties([
 def type = "java"
 def product = "dg"
 def component = "template-management-api"
-def vault = "rpa"
 def channel = '#rpa-pipeline'
 
 def secrets = [
@@ -36,9 +35,15 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
       envVariable: envVar
     ]
 }
+
+def vaultOverrides = [
+        'preview' : 'aat',
+        'spreview': 'saat'
+]
+
 withParameterizedPipeline(type, product, component, params.ENVIRONMENT, 'sandbox') {
     enableSlackNotifications(channel)
-    setVaultName(vault)
+    overrideVaultEnvironments(vaultOverrides)
     loadVaultSecrets(secrets)
 
     after('checkout') {
