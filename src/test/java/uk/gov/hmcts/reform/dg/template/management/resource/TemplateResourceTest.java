@@ -74,4 +74,15 @@ public class TemplateResourceTest {
         String content = result.getResponse().getContentAsString();
         Assert.assertTrue(content.contains("customXml/itemProps1"));
     }
+
+    @Test
+    public void template404() throws Exception {
+        BDDMockito.given(authTokenGenerator.generate()).willReturn("s2s");
+        BDDMockito.given(userResolver.getTokenDetails("jwt")).willReturn(new User("id", null));
+        String id = Base64.getEncoder().encodeToString("missing template".getBytes());
+
+        mvc.perform(get("/api/templates/" + id))
+            .andExpect(status().isNotFound())
+            .andReturn();
+    }
 }
