@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -59,9 +60,13 @@ public class TemplateResource {
     public void template(@PathVariable String id, HttpServletResponse response) throws IOException {
         log.debug("GET /templates/{}", id);
 
-        final InputStream results = binaryRepository.getTemplateById(id);
+        final Optional<InputStream> file = binaryRepository.getTemplateById(id);
 
-        response.setStatus(HttpServletResponse.SC_OK);
-        IOUtils.copy(results, response.getOutputStream());
+        if (file.isPresent()) {
+            response.setStatus(HttpServletResponse.SC_OK);
+            IOUtils.copy(file.get(), response.getOutputStream());
+        } else {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
     }
 }
