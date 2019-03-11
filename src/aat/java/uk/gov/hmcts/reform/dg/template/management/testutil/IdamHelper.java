@@ -2,23 +2,27 @@ package uk.gov.hmcts.reform.dg.template.management.testutil;
 
 import io.restassured.RestAssured;
 import org.json.JSONObject;
-import org.springframework.http.MediaType;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.idam.client.IdamClient;
 
+@Service
 public class IdamHelper {
 
     private static final String USERNAME = "test@test.com";
     private static final String PASSWORD = "password";
 
-    private String idamToken = null;
+    @Autowired
+    private IdamClient client;
+
+    @Value("${idam.api.url}")
+    private String idamUrl;
 
     public String getIdamToken() {
-        if (idamToken == null) {
-            createUser();
+        createUser();
 
-            idamToken = getToken(getAuthCode());
-        }
-
-        return idamToken;
+        return client.authenticateUser(USERNAME, PASSWORD);
     }
 
     private void createUser() {
@@ -32,29 +36,7 @@ public class IdamHelper {
             .given()
             .header("Content-Type", "application/json")
             .body(jsonObject.toString())
-            .post(Env.getIdamURL() + "/testing-support/accounts");
-
-    }
-
-    private String getAuthCode() {
-        return RestAssured
-            .given()
-            .header("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-            .formParam("username", USERNAME)
-            .formParam("password", PASSWORD)
-            .post(Env.getIdamURL() + "/oauth2/authorize")
-            .body()
-            .print();
-    }
-
-    private String getToken(String authCode) {
-        return RestAssured
-            .given()
-            .header("Content-Type", MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-            .formParam("authCode", authCode)
-            .post(Env.getIdamURL() + "/oauth2/token")
-            .body()
-            .print();
+            .post(idamUrl + "/testing-support/accounts");
     }
 
 }

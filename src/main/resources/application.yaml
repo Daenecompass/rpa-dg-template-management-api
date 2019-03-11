@@ -49,7 +49,7 @@ authorization:
 auth:
   idam:
     client:
-      baseUrl: ${IDAM_API_BASE_URI:http://betadevaccidamapplb.reform.hmcts.net}
+      baseUrl: ${IDAM_API_BASE_URI:http://localhost:4501}
   provider:
     service:
       client:
@@ -68,8 +68,15 @@ app-insights:
 rpa-dg-template-management-api:
   base-url: ${DG_TEMPLATE_MANAGEMENT_API_URL:http://localhost:4623}
 
+# only used in functional tests
 idam:
   s2s-auth:
     url: ${S2S_BASE_URI:http://localhost:4502}
-    totp_secret: ${S2S_KEY:AAAAAAAAAAAAAAAA}
-    microservice: dg_template_management
+    totp_secret: ${FUNCTIONAL_TEST_CLIENT_S2S_TOKEN:AAAAAAAAAAAAAAAA}
+    microservice: em_gw
+  api:
+    url: ${IDAM_API_BASE_URI:http://localhost:4501}
+  client:
+    id: webshow
+    secret: ${IDAM_API_OAUTH2_CLIENT_CLIENT_SECRETS_WEBSHOW:AAAAAAAAAAAAAAAA}
+    redirect_uri: ${IDAM_WEBSHOW_WHITELIST:http://localhost:8080/oauth2redirect}

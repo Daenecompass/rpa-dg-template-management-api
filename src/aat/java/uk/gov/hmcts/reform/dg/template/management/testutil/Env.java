@@ -16,7 +16,6 @@ public class Env {
         defaults.setProperty("S2S_URL", "http://localhost:4502");
         defaults.setProperty("IDAM_API_USER_ROLE", "caseworker");
         defaults.setProperty("IDAM_API_USER", "test@test.com");
-        defaults.setProperty("IDAM_API_URL", "http://betadevaccidamapplb.reform.hmcts.net");
     }
 
     public static String getUseProxy() {
@@ -25,10 +24,6 @@ public class Env {
 
     public static String getTestUrl() {
         return require("TEST_URL");
-    }
-
-    public static String getIdamURL() {
-        return require("IDAM_API_URL");
     }
 
     public static String getS2SUrl() {
