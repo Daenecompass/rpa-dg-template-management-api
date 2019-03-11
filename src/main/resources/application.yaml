@@ -66,5 +66,5 @@ idam:
     url: ${IDAM_API_BASE_URI:http://localhost:4501}
   client:
     id: webshow
-    secret: ${IDAM_API_OAUTH2_CLIENT_CLIENT_SECRETS_WEBSHOW:AAAAAAAAAAAAAAAA}
+    secret: ${FUNCTIONAL_TEST_CLIENT_OAUTH_SECRET:AAAAAAAAAAAAAAAA}
     redirect_uri: ${IDAM_WEBSHOW_WHITELIST:http://localhost:8080/oauth2redirect}

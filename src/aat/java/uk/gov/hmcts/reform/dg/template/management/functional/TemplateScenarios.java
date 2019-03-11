@@ -35,9 +35,6 @@ public class TemplateScenarios {
     public void setup() {
         idamAuth = idamHelper.getIdamToken();
         s2sAuth = s2sHelper.getS2sToken();
-
-        System.out.println(idamAuth);
-        System.out.println(s2sAuth);
     }
 
     @Test
@@ -85,8 +82,6 @@ public class TemplateScenarios {
             .header("ServiceAuthorization", s2sAuth)
             .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
             .request("GET", Env.getTestUrl() + "/api/templates/" + id);
-
-        String body = response.getBody().asString();
 
         Assert.assertEquals(404, response.getStatusCode());
     }
