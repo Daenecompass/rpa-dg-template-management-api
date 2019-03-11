@@ -75,4 +75,19 @@ public class TemplateScenarios {
         Assert.assertEquals(200, response.getStatusCode());
         Assert.assertTrue(body.contains("customXml/itemProps1"));
     }
+
+    @Test
+    public void testGetTemplate404() {
+        String id = Base64.getEncoder().encodeToString("does not exist.docx".getBytes());
+
+        Response response = RestAssured.given()
+            .header("Authorization", idamAuth)
+            .header("ServiceAuthorization", s2sAuth)
+            .header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+            .request("GET", Env.getTestUrl() + "/api/templates/" + id);
+
+        String body = response.getBody().asString();
+
+        Assert.assertEquals(404, response.getStatusCode());
+    }
 }

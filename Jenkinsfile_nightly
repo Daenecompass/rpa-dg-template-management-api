@@ -19,8 +19,10 @@ def component = "template-management-api"
 
 def channel = '#rpa-pipeline'
 
-List<LinkedHashMap<String, Object>> secrets = [
-    secret('em-s2s-token', 'S2S_TOKEN')
+def secrets = [
+    's2s-${env}': [
+        secret('microservicekey-em-gw', 'FUNCTIONAL_TEST_CLIENT_S2S_TOKEN')
+    ]
 ]
 
 static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
@@ -32,8 +34,14 @@ static LinkedHashMap<String, Object> secret(String secretName, String envVar) {
     ]
 }
 
+def vaultOverrides = [
+    'preview' : 'aat',
+    'spreview': 'saat'
+]
+
 withNightlyPipeline(type, product, component) {
     enableSlackNotifications(channel)
+    overrideVaultEnvironments(vaultOverrides)
     loadVaultSecrets(secrets)
 
     after('checkout') {
