@@ -8,7 +8,7 @@ output "s2s_url" {
 }
 
 output "idam_webshow_whitelist" {
-  value = ""https://em-show-aat-staging.service.core-compute-aat.internal/oauth2/callback""
+  value = "https://em-show-aat-staging.service.core-compute-aat.internal/oauth2/callback"
 }
 
 output "enable_idam_health_check" {
