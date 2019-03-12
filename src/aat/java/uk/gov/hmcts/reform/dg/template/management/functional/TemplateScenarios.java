@@ -10,6 +10,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import uk.gov.hmcts.reform.dg.template.management.Application;
 import uk.gov.hmcts.reform.dg.template.management.testutil.Env;
@@ -19,7 +21,9 @@ import uk.gov.hmcts.reform.dg.template.management.testutil.S2sHelper;
 import java.util.Base64;
 
 @RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+@SpringBootTest(classes = Application.class, properties = "SpringBootTest")
+@TestPropertySource(locations = "classpath:application-aat.yaml")
+@ActiveProfiles("aat")
 public class TemplateScenarios {
 
     @Autowired
