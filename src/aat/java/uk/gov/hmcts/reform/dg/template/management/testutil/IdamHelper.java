@@ -19,7 +19,17 @@ public class IdamHelper {
     @Value("${idam.api.url}")
     private String idamUrl;
 
+    @Value("${idam.api.secret}")
+    private String secret;
+
+    @Value("${idam.api.redirect_uri}")
+    private String redirect;
+
     public String getIdamToken() {
+        System.out.println(idamUrl);
+        System.out.println(secret);
+        System.out.println(redirect);
+
         createUser();
 
         return client.authenticateUser(USERNAME, PASSWORD);
