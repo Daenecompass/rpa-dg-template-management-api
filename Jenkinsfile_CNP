@@ -16,7 +16,6 @@ properties([
 def type = "java"
 def product = "dg"
 def component = "tmpl-mgmt"
-def channel = '#rpa-pipeline'
 
 def secrets = [
     's2s-${env}': [
@@ -42,25 +41,7 @@ def vaultOverrides = [
 ]
 
 withPipeline(type , product, component) {
-    enableSlackNotifications(channel)
     enableDockerBuild()
     overrideVaultEnvironments(vaultOverrides)
     loadVaultSecrets(secrets)
-
-    after('checkout') {
-        echo '${product}-${component} out'
-        sh '''
-mkdir -p application/src/main/resources/META-INF
-echo "allprojects { task printVersionInit { doLast { println project.version } } }" > init.gradle
-
-tee application/src/main/resources/META-INF/build-info.properties <<EOF 2>/dev/null
-build.version=$(./gradlew -q printVersion)
-build.number=${BUILD_NUMBER}
-build.commit=$(git rev-parse HEAD)
-build.date=$(date)
-EOF
-
-'''
-    }
-
 }
