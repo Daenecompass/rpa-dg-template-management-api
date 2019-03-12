@@ -2,15 +2,6 @@ spring:
   application:
     name: DG TEMPLATE MANAGEMENT API
 
-base-urls:
-  idam-url: ${IDAM_API_URL:http://betadevaccidamapplb.reform.hmcts.net}
-  idam-user: ${IDAM_API_USER:test@test.com}
-  idam-user-role: ${IDAM_API_USER_ROLE:caseworker}
-  idam-s2s: ${S2S_URL:http://localhost:4502}
-  s2s-name: ${S2S_SERVICE_NAME:dg_template_management}
-  s2s-token: ${S2S_TOKEN:AAAAAAAAAAAAAAAA}
-  test-url: ${TEST_URL:http://localhost:8080}
-
 management:
   endpoints:
     web:
@@ -40,20 +31,28 @@ info:
     environment: ${PACKAGES_ENVIRONMENT:local}
     project: ${PACKAGES_PROJECT:dg-template-management-api}
     name: ${PACKAGES_NAME:cor}
-#    version: ${PACKAGES_VERSION:unknown}
 
+# AuthCheckerConfiguration
 authorization:
   case-worker-roles: ${CASE_WORKER_ROLES:caseworker-probate,caseworker-cmc,caseworker-sscs,caseworker-divorce}
   s2s-names-whitelist: ${S2S_NAMES_WHITELIST:sscs,divorce,ccd,em_gw,jui_webapp,pui_webapp,ccd_data,dg_docassembly_api}
 
+# auth-checker-lib
 auth:
   idam:
     client:
-      baseUrl: ${IDAM_API_BASE_URI:http://betadevaccidamapplb.reform.hmcts.net}
+      baseUrl: ${IDAM_API_BASE_URI:http://localhost:4501}
   provider:
     service:
       client:
         baseUrl: ${S2S_BASE_URI:http://localhost:4502}
+
+# service-auth-provider-client lib
+idam:
+  s2s-auth:
+    url: ${S2S_BASE_URI:http://localhost:4502}
+    totp_secret: ${S2S_KEY:AAAAAAAAAAAAAAAA}
+    microservice: ${S2S_SERVICE_NAME:dg_template_management}
 
 azure:
   app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:true}
@@ -64,12 +63,3 @@ app-insights:
   dev-mode: off
   request-component: on
   telemetry-component: on
-
-rpa-dg-template-management-api:
-  base-url: ${DG_TEMPLATE_MANAGEMENT_API_URL:http://localhost:4623}
-
-idam:
-  s2s-auth:
-    url: ${S2S_BASE_URI:http://localhost:4502}
-    totp_secret: ${S2S_KEY:AAAAAAAAAAAAAAAA}
-    microservice: dg_template_management
