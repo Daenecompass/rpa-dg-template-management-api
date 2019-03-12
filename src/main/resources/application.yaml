@@ -31,12 +31,13 @@ info:
     environment: ${PACKAGES_ENVIRONMENT:local}
     project: ${PACKAGES_PROJECT:dg-template-management-api}
     name: ${PACKAGES_NAME:cor}
-#    version: ${PACKAGES_VERSION:unknown}
 
+# AuthCheckerConfiguration
 authorization:
   case-worker-roles: ${CASE_WORKER_ROLES:caseworker-probate,caseworker-cmc,caseworker-sscs,caseworker-divorce}
   s2s-names-whitelist: ${S2S_NAMES_WHITELIST:sscs,divorce,ccd,em_gw,jui_webapp,pui_webapp,ccd_data,dg_docassembly_api}
 
+# auth-checker-lib
 auth:
   idam:
     client:
@@ -45,6 +46,13 @@ auth:
     service:
       client:
         baseUrl: ${S2S_BASE_URI:http://localhost:4502}
+
+# service-auth-provider-client lib
+idam:
+  s2s-auth:
+    url: ${S2S_BASE_URI:http://localhost:4502}
+    totp_secret: ${S2S_KEY:AAAAAAAAAAAAAAAA}
+    microservice: ${S2S_SERVICE_NAME:dg_template_management}
 
 azure:
   app_insights_key: ${APPINSIGHTS_INSTRUMENTATIONKEY:true}
@@ -55,16 +63,3 @@ app-insights:
   dev-mode: off
   request-component: on
   telemetry-component: on
-
-# only used in functional tests
-idam:
-  s2s-auth:
-    url: ${S2S_BASE_URI:http://localhost:4502}
-    totp_secret: ${FUNCTIONAL_TEST_CLIENT_S2S_TOKEN:AAAAAAAAAAAAAAAA}
-    microservice: em_gw
-  api:
-    url: ${IDAM_API_BASE_URI:http://localhost:4501}
-  client:
-    id: webshow
-    secret: ${FUNCTIONAL_TEST_CLIENT_OAUTH_SECRET:AAAAAAAAAAAAAAAA}
-    redirect_uri: ${IDAM_WEBSHOW_WHITELIST:http://localhost:8080/oauth2redirect}
