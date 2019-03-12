@@ -19,10 +19,10 @@ public class IdamHelper {
     @Value("${idam.api.url}")
     private String idamUrl;
 
-    @Value("${idam.api.secret}")
+    @Value("${idam.client.secret}")
     private String secret;
 
-    @Value("${idam.api.redirect_uri}")
+    @Value("${idam.client.redirect_uri}")
     private String redirect;
 
     public String getIdamToken() {
