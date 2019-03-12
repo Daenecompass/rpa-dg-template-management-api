@@ -73,7 +73,7 @@ dependencies {
     compile group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: '2.0.0'
     annotationProcessor "org.springframework.boot:spring-boot-configuration-processor"
 
-    aatCompile group: 'uk.gov.hmcts.reform', name: 'idam-client', version: '0.0.5'
+    aatCompile group: 'uk.gov.hmcts.reform', name: 'idam-client', version: '1.0.0'
     
     testCompile('org.springframework.boot:spring-boot-starter-test') {
         exclude group: "com.vaadin.external.google", module:"android-json"
