@@ -32,6 +32,7 @@ module "app" {
     IDAM_API_BASE_URI = "${var.idam_api_url}"
     S2S_BASE_URI = "http://${var.s2s_url}-${local.local_env}.service.core-compute-${local.local_env}.internal"
     S2S_KEY = "${data.azurerm_key_vault_secret.s2s_key.value}"
+    IDAM_WEBSHOW_WHITELIST = "https://em-show-aat-staging.service.core-compute-aat.internal/oauth2/callback"
 
     # logging vars & healthcheck
     REFORM_SERVICE_NAME = "${local.app_full_name}"
