@@ -11,7 +11,7 @@ import uk.gov.hmcts.reform.idam.client.IdamClient;
 public class IdamHelper {
 
     private static final String USERNAME = "testytesttest@test.com";
-    private static final String PASSWORD = "password";
+    private static final String PASSWORD = "4590fgvhbfgbDdffm3lk4j";
 
     @Autowired
     private IdamClient client;
