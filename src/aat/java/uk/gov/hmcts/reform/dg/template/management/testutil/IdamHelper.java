@@ -10,7 +10,7 @@ import uk.gov.hmcts.reform.idam.client.IdamClient;
 @Service
 public class IdamHelper {
 
-    private static final String USERNAME = "test@test.com";
+    private static final String USERNAME = "testytesttest@test.com";
     private static final String PASSWORD = "password";
 
     @Autowired
