@@ -39,6 +39,8 @@ public class TemplateScenarios {
     public void setup() {
         idamAuth = idamHelper.getIdamToken();
         s2sAuth = s2sHelper.getS2sToken();
+
+        RestAssured.useRelaxedHTTPSValidation();
     }
 
     @Test
