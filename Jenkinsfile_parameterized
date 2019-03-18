@@ -18,7 +18,7 @@ properties([
 
 def type = "java"
 def product = "dg"
-def component = "template-management-api"
+def component = "tmpl-mgmt"
 
 def secrets = [
     's2s-${env}': [

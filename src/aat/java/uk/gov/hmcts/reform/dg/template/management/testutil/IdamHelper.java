@@ -26,10 +26,6 @@ public class IdamHelper {
     private String redirect;
 
     public String getIdamToken() {
-        System.out.println(idamUrl);
-        System.out.println(secret);
-        System.out.println(redirect);
-
         createUser();
 
         return client.authenticateUser(USERNAME, PASSWORD);
