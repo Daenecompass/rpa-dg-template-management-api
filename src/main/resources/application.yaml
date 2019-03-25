@@ -3,6 +3,9 @@ spring:
     name: DG TEMPLATE MANAGEMENT API
 
 management:
+  endpoint:
+    health:
+      show-details: "always"
   endpoints:
     web:
       base-path: '/'

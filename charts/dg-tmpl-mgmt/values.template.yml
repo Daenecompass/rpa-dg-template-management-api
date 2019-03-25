@@ -1,0 +1,28 @@
+
+npa-app:
+  image: ${IMAGE_NAME}
+  ingressHost: ${SERVICE_FQDN}
+  applicationPort: 8080
+  readinessDelay: 20
+  readinessTimeout: 20
+  readinessFailureThreshold: 7
+  readinessPeriod: 15
+  livenessDelay: 20
+  livenessTimeout: 20
+  livenessPeriod: 15
+  livenessFailureThreshold: 7
+  keyVaults:
+    rpa:
+      resourceGroup: rpa
+      secrets:
+        - AppInsightsInstrumentationKey
+    s2s:
+      resourceGroup: rpe-service-auth-provider
+      secrets:
+        - microservicekey-em-npa-app
+  environment:
+    - APPINSIGHTS_INSTRUMENTATIONKEY: test_app
+    - REFORM_SERVICE_TYPE: java
+    - REFORM_SERVICE_NAME: rpa-dg-template-management-api
+    - REFORM_TEAM: dg-template-management-api
+    - REFORM_ENVIRONMENT: preview

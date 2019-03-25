@@ -1,0 +1,7 @@
+
+name: dg-tmpl-mgmt
+home: https://github.com/hmcts/dg-template-management-api
+version: 0.0.1
+description: HMCTS Template Management API
+maintainers:
+  - name: HMCTS EM Team
