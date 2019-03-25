@@ -19,7 +19,7 @@ npa-app:
     s2s:
       resourceGroup: rpe-service-auth-provider
       secrets:
-        - microservicekey-em-npa-app
+        - microservicekey-dg-template-management
   environment:
     - APPINSIGHTS_INSTRUMENTATIONKEY: test_app
     - REFORM_SERVICE_TYPE: java
