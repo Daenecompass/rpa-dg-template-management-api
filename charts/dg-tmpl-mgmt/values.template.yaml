@@ -1,5 +1,4 @@
-
-npa-app:
+tmpl-mgmt-api:
   image: ${IMAGE_NAME}
   ingressHost: ${SERVICE_FQDN}
   applicationPort: 8080
@@ -21,8 +20,9 @@ npa-app:
       secrets:
         - microservicekey-dg-template-management
   environment:
-    - APPINSIGHTS_INSTRUMENTATIONKEY: test_app
-    - REFORM_SERVICE_TYPE: java
-    - REFORM_SERVICE_NAME: rpa-dg-template-management-api
-    - REFORM_TEAM: dg-template-management-api
-    - REFORM_ENVIRONMENT: preview
+    REFORM_SERVICE_TYPE: java
+    REFORM_SERVICE_NAME: rpa-dg-template-management-api
+    REFORM_TEAM: dg-template-management-api
+    REFORM_ENVIRONMENT: preview
+    IDAM_API_BASE_URI: https://preprod-idamapi.reform.hmcts.net:3511
+    S2S_BASE_URI: http://rpe-service-auth-provider-aat.service.core-compute-aat.internal
