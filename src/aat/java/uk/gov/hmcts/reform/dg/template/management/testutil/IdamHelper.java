@@ -47,10 +47,12 @@ public class IdamHelper {
     }
 
     private String getCode() {
+        System.out.println("JJJ - idamUrl being used is");
+        System.out.println(idamUrl);
         String credentials = USERNAME + ":" + PASSWORD;
         String authHeader = Base64.getEncoder().encodeToString(credentials.getBytes());
 
-        return RestAssured
+        String returnString = RestAssured
             .given()
             .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_FORM_URLENCODED_VALUE)
             .header("Authorization", "Basic " + authHeader)
@@ -60,6 +62,10 @@ public class IdamHelper {
             .post(idamUrl + "/oauth2/authorize")
             .jsonPath()
             .get("code");
+
+        System.out.println("JJJ - the getted code is");
+        System.out.println(returnString);
+        return returnString;
     }
 
     private String getToken(String code) {
