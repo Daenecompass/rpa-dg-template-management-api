@@ -1,0 +1,43 @@
+tmpl-mgmt-api:
+  applicationPort: 8080
+  image: hmcts.azurecr.io/hmcts/dg-tmpl-mgmt:latest
+  readinessDelay: 30
+  readinessTimeout: 5
+  readinessPeriod: 15
+  readinessFailureThreshold: 7
+  livenessDelay: 30
+  livenessTimeout: 5
+  livenessPeriod: 15
+  livenessFailureThreshold: 7
+  livenessPath: '/health'
+  keyVaults:
+    rpa:
+      resourceGroup: rpa
+      secrets:
+        - AppInsightsInstrumentationKey
+    s2s:
+      resourceGroup: rpe-service-auth-provider
+      secrets:
+        - microservicekey-dg-template-management
+  environment:
+    # Regardless of environment, point towards AAT instances. Overwrite in product charts etc.
+    IDAM_API_BASE_URI: https://idam-api-idam-aat.service.core-compute-idam-aat.internal
+    S2S_BASE_URI: http://rpe-service-auth-provider-aat.service.core-compute-aat.internal
+    REFORM_SERVICE_TYPE: java
+    REFORM_SERVICE_NAME: rpa-dg-template-management-api
+    REFORM_TEAM: dg-template-management-api
+    REFORM_ENVIRONMENT: preview
+    PACKAGES_NAME: dg-tmpl-mgmt
+    PACKAGES_PROJECT: evidence
+    PACKAGES_ENVIRONMENT: preview
+    JSON_CONSOLE_PRETTY_PRINT: false
+    LOG_OUTPUT: single
+    ROOT_LOGGING_LEVEL: INFO
+    LOG_LEVEL_SPRING_WEB: INFO
+    LOG_LEVEL_DM: INFO
+    ENDPOINTS_HEALTH_SENSITIVE: false
+    ENDPOINTS_INFO_SENSITIVE: false
+    S2S_NAMES_WHITELIST: em_api,em_gw,ccd_gw,ccd_data,sscs,dg_tmpl_mgmt, dg_docassembly, divorce_document_upload,divorce_document_generator,probate_backend,jui_webapp,pui_webapp
+    ENABLE_IDAM_HEALTH_CHECK: false
+    ENABLE_S2S_HEALTH_CHECK: false
+    SERVER_PORT: 8080
